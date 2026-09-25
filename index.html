@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analyst Pool | Daily Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap"><div class="brand-mark" aria-hidden="true">AP</div><div><p class="eyebrow">Team workspace</p><h1>Analyst Pool <span>·</span> Daily tracker</h1></div></div>
+        <nav class="role-switcher" aria-label="Choose your workspace"><button class="role-btn active" type="button" data-view="member-view">Team member</button><button class="role-btn" type="button" data-view="manager-view">Manager</button></nav>
+      </header>
+      <main class="workspace">
+        <section class="intro"><div><p class="kicker" id="view-kicker">Team member workspace</p><h2 id="view-title">Log your work for today.</h2><p class="intro-copy" id="view-copy">Add a clear note about the task you completed.</p></div><div class="date-stamp"><span id="today-label">Today</span><strong id="entry-count">0 entries</strong></div></section>
+
+        <section id="member-view" class="view-panel active">
+          <form id="tracker-form" class="entry-card" novalidate>
+            <div class="card-heading"><div class="step-number">01</div><div><p class="card-eyebrow">New entry</p><h3>Log a task</h3></div></div>
+            <div class="form-grid"><label><span>Date</span><input id="entry-date" name="date" type="date" required /></label><label><span>Your name</span><select id="member" name="member" required><option value="">Select your name</option><option>Hema</option><option>Sumathi</option><option>Yashwanth</option><option>Narasamma</option><option>Meghna</option><option>Subhanshi</option></select></label><label><span>Requestor name</span><input id="requestor" name="requestor" type="text" required placeholder="Who requested this task?" /></label></div>
+            <label><span>Entry type</span><select id="entry-type" name="entry-type" required><option value="">Select entry type</option><option value="Task performed">Task performed</option><option value="Leave">Leave</option></select></label>
+            <label><span id="task-label">Task performed</span><textarea id="task" name="task" rows="5" maxlength="240" required placeholder="Describe the work completed today..."></textarea><small><span id="character-count">0</span>/240</small></label>
+            <div id="form-message" class="form-message" aria-live="polite"></div><button class="primary-btn" type="submit"><span>+</span> Add to daily tracker</button>
+          </form>
+          <aside class="member-note"><span class="note-mark">i</span><div><strong>Keep it useful</strong><p>Write one entry for each meaningful task. Your manager will see it in the shared activity record.</p></div></aside>
+        </section>
+
+        <section id="manager-view" class="view-panel manager-panel" aria-labelledby="manager-title">
+          <div class="manager-header"><div><p class="card-eyebrow">Manager workspace</p><h3 id="manager-title">Team activity</h3><p>Review the work logged by all seven analysts.</p></div><button id="export-btn" class="text-btn" type="button" title="Download tracker as CSV">Export CSV <span>↓</span></button></div>
+          <div class="manager-tabs" role="tablist" aria-label="Manager views"><button class="manager-tab active" type="button" data-manager-tab="activity-panel" role="tab" aria-selected="true">History View</button><button class="manager-tab" type="button" data-manager-tab="calendar-panel" role="tab" aria-selected="false">Leave calendar</button></div>
+          <div id="activity-panel" class="manager-tab-panel active" role="tabpanel">
+            <div class="filters"><label class="search-field"><span class="sr-only">Search entries</span><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search member or task" /></label><label class="filter-date"><span>From</span><input id="filter-from" type="date" /></label><label class="filter-date"><span>To</span><input id="filter-to" type="date" /></label></div>
+            <div class="manager-summary"><strong id="manager-count">0</strong><span>total entries</span><span class="summary-divider"></span><span>All team members</span></div>
+            <div id="entries-list" class="entries-list" aria-live="polite"></div>
+            <div id="empty-state" class="empty-state"><div class="empty-icon">↗</div><h4>No tasks logged yet.</h4><p>Entries submitted by team members will appear here.</p></div>
+          </div>
+          <div id="calendar-panel" class="manager-tab-panel" role="tabpanel" hidden>
+            <section class="calendar-card" aria-labelledby="calendar-title"><div class="calendar-header"><div><p class="card-eyebrow">Leave calendar</p><h4 id="calendar-title">Month</h4></div><div class="calendar-nav"><button id="previous-month" class="icon-btn" type="button" aria-label="Previous month">‹</button><button id="next-month" class="icon-btn" type="button" aria-label="Next month">›</button></div></div><div class="weekdays"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div id="calendar-grid" class="calendar-grid"></div></section>
+          </div>
+        </section>
+      </main>
+      <footer>Analyst Pool <span>•</span> Internal daily activity log</footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
